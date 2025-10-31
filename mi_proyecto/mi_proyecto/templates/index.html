@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+    <h1>Bienvenido a nuestra página de recetas</h1>
+    <p>Encuentra las mejores recetas para cualquier ocasión.</p>
+    </div>
+   </div>
+</div>
+
+    <div class="text-center">
+    <img src="{% static 'images/cooking.jpg' %}" class="img-fluid rounded" alt="Familia cocinando" width="600" >
+    </div>
+
+{% endblock %}
