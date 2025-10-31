@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'productos',
+    'productos',    
 ]
 
 MIDDLEWARE = [
@@ -48,7 +48,7 @@ ROOT_URLCONF = 'mi_proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'mi_proyecto', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,7 +112,9 @@ USE_TZ = True
 MONEY_FORMAT = 'CLP'
 
 THOUSAND_SEPARATOR = '.'
+
 DECIMAL_SEPARATOR = ','
+
 NUMBER_GROUPING = 3
 
 MEDIA_URL = '/media/'
