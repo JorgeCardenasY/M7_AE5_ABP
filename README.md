@@ -1,12 +1,12 @@
 # Actividad de Aprendizaje - Consultas en Django
 
-Este documento describe cómo un estudiante resolvió los ejercicios de consultas a la base de datos utilizando Django.
+Este documento describe cómo un estudiante humilde y sencillo de Python y Django resolvió los ejercicios de consultas a la base de datos utilizando Django.
 
 ## ¿Cómo se probaron los códigos?
 
 Para probar que los códigos funcionaran, el estudiante usó la "shell" de Django. Esta es una herramienta que permite ejecutar comandos de Python que entienden cómo funciona el proyecto.
 
-Para iniciar esta shell, se utilizó el siguiente comando en la terminal:
+Para iniciar esta shell, el estudiante  utilizó el siguiente comando en la terminal:
 
 ```bash
 python3 mi_proyecto/manage.py shell
@@ -263,3 +263,5 @@ with connection.cursor() as cursor:
 ```
 
 Esto es útil para encapsular lógica de negocio compleja directamente en la base de datos y llamarla de forma simple desde la aplicación.
+
+El estudiante se llama **Jorge Cárdenas Yañez**. Aún le cuesta un poco entender Django.
