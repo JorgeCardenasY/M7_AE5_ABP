@@ -1,32 +1,96 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
+<h1 class="mt-4">Resultados de Consultas a la Base de Datos</h1>
+<p>Esta página muestra los resultados de las diferentes consultas realizadas con el ORM de Django y SQL directo, como se describe en el archivo README.md.</p>
 
-    <div class="mt-4 mb-4 p-2 bg-dark text-white rounded">
+<hr>
 
-<h1>Lista de Todos Nuestros Productos ({{ total_productos }})</h1>
-    <p>Disponibles: {{ productos_disponibles }}, No disponibles: {{ productos_no_disponibles }}</p>
-
-    <ul>
-    {% for producto in productos %}
-        <li>
-            <strong>{{ producto.nombre }}</strong> - 
-            ${{ producto.precio }} - 
-            {% if producto.disponible %}
-                <span style="color: green;">Disponible</span>
-            {% else %}
-                <span style="color: red;">No disponible</span>
-            {% endif %}
-        </li>
-    {% empty %}
-        <li>No hay productos registrados.</li>
+<h3>1. Todos los Productos (`.all()`)</h3>
+<ul>
+    {% for p in todos_los_productos %}
+        <li>{{ p.nombre }} - ${{ p.precio }}</li>
     {% endfor %}
-    </ul>
-    </div>
+</ul>
 
-{% include 'productos_caros.html' %}
-{% include 'productos_start_a.html' %}
-{% include 'productos_disponibles.html' %}
+<hr>
+
+<h3>2. Filtros (`.filter()`)</h3>
+
+<h4>Productos con Precio > 50:</h4>
+<ul>
+    {% for p in productos_precio_gt_50 %}
+        <li>{{ p.nombre }} - ${{ p.precio }}</li>
+    {% endfor %}
+</ul>
+
+<h4>Productos con Nombre que empieza con 'A':</h4>
+<ul>
+    {% for p in productos_nombre_A %}
+        <li>{{ p.nombre }}</li>
+    {% endfor %}
+</ul>
+
+<h4>Productos Disponibles:</h4>
+<ul>
+    {% for p in productos_disponibles_orm %}
+        <li>{{ p.nombre }} - {% if p.disponible %}Disponible{% else %}No Disponible{% endif %}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>3. Consulta SQL Directa (`.raw()`)</h3>
+<h4>Productos con Precio < 100:</h4>
+<ul>
+    {% for p in productos_raw_lt_100 %}
+        <li>{{ p.nombre }} - ${{ p.precio }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>6. Exclusión de Campos (`.defer()`)</h3>
+<p>Se han cargado los productos excluyendo el campo 'disponible'. Al acceder a él aquí, Django hace una nueva consulta para obtenerlo.</p>
+<ul>
+    {% for p in productos_defer %}
+        <li>{{ p.nombre }} - {% if p.disponible %}Disponible (obtenido con una 2da consulta){% else %}No Disponible (obtenido con una 2da consulta){% endif %}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>7. Anotaciones (`.annotate()`)</h3>
+<p>Se calcula un campo `precio_con_impuesto` (16%) en la base de datos.</p>
+<ul>
+    {% for p in productos_anotados %}
+        <li>{{ p.nombre }} - Precio: ${{ p.precio }} - Con Impuesto: ${{ p.precio_con_impuesto|floatformat:2 }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>8. `raw()` con Parámetros</h3>
+<p>Consulta SQL para productos con precio menor a <strong>${{ valor_limite_raw }}</strong>.</p>
+<ul>
+    {% for p in productos_raw_params %}
+        <li>{{ p.nombre }} - ${{ p.precio }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>10. Cursor Manual para Leer Datos</h3>
+<p>Resultados obtenidos como tuplas directamente desde la base de datos, sin usar el modelo.</p>
+<ul>
+    {% for fila in cursor_data %}
+        <li>Nombre: {{ fila.0 }}, Precio: ${{ fila.1 }}</li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h3>9 y 11. SQL Directo y Procedimientos Almacenados</h3>
+<p>Las operaciones de escritura (`UPDATE`, `DELETE`) y la llamada a procedimientos almacenados se han incluido como ejemplos comentados en el archivo <code>productos/views.py</code> para no modificar los datos en cada recarga de la página y para evitar errores si el procedimiento no existe. Se recomienda revisar el código de la vista para entender su implementación.</p>
 
 {% endblock %}
-
