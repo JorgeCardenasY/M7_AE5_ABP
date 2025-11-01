@@ -94,7 +94,7 @@ productos_baratos = Producto.objects.raw(consulta_sql)
 for p in productos_baratos:
     print(f"{p.nombre} cuesta {p.precio}")
 ```
-![Consulta 3](media/consulta_3.png)
+![Consulta 3](mi_proyecto/media/consulta_3.png)
 ---
 
 ### 4. Entendiendo el Mapeo de Consultas
@@ -117,7 +117,7 @@ La regla más importante para que este mapeo funcione es que la consulta SQL deb
     # Producto.objects.raw("SELECT nombre, precio FROM productos_producto")
     ```
 ---
-![Consulta 4](media/consulta_4.png)
+![Consulta 4](mi_proyecto/media/consulta_4.png)
 
 ### 5. Realizando Búsquedas de Índice
 
