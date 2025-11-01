@@ -1,0 +1,13 @@
+<div class="mt-4 mb-4 p-2 bg-dark text-white rounded">
+  <h1>Lista de Nuestros Productos Disponibles ({{ productos_disponibles }})</h1>
+
+  <ul>
+    {% for producto in productos %}
+    <li>
+      <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}
+    </li>
+    {% empty %}
+    <li>No hay productos registrados.</li>
+    {% endfor %}
+  </ul>
+</div>

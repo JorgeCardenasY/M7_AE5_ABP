@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from productos import views
+from mi_proyecto import views
 
 urlpatterns = [
     path('', views.index, name='index'),

@@ -1,17 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-<div class="container">
-    <div class="mt-4 p-5 bg-primary text-white rounded">
-    <h1>Bienvenido a nuestra página de recetas</h1>
-    <p>Encuentra las mejores recetas para cualquier ocasión.</p>
+
+    <div class="mt-4 p-5 bg-dark text-white rounded">
+    <h1>Bienvenido a nuestra página de Productos</h1>
+    <p>Encuentra los mejores productos para cualquier ocasión.</p>
     </div>
-   </div>
-</div>
+
 
     <div class="text-center">
-    <img src="{% static 'images/cooking.jpg' %}" class="img-fluid rounded" alt="Familia cocinando" width="600" >
+
+<section class="cloneable">
+  <div class="button-row">
+    <a data-cursor="Atrévete!" href="{% url 'productos' %}" class="button">
+      <p class="button-text">NUESTRA CATÁLOGO COMPLETO ONLINE</p>
+      <div class="button-bg"></div>
+    </a>
+    <a data-cursor="CUATRO NUEVAS TIENDAS" href="https://maps.app.goo.gl/yqD1tvuU2TkmyUKY9" target="_blank" class="button secondary">
+      <p class="button-text">VISITA NUESTRAS TIENDAS EN ARICA </p>
+      <div class="button-bg"></div>
+    </a>
+  </div>
+
+</section>
+
+
     </div>
 
 {% endblock %}

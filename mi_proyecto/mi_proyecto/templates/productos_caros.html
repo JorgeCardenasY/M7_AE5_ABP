@@ -1,0 +1,13 @@
+
+<div class="mt-4 mb-4 p-2 bg-dark text-white rounded">
+   <h1>Lista de Productos con Precio Mayor a $50({{ productos_caros.count }})</h1>
+   <ul>
+     {% for producto in productos_caros %}
+       <li>
+         <strong>{{ producto.nombre }}</strong> - ${{ producto.precio }}
+       </li>
+     {% empty %}
+       <li>No hay productos caros registrados.</li>
+     {% endfor %}
+   </ul>
+ </div>

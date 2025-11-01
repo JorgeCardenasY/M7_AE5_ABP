@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="mt-4 mb-4 p-2 bg-dark text-white rounded">
+
+<h1>Lista de Todos Nuestros Productos ({{ total_productos }})</h1>
+    <p>Disponibles: {{ productos_disponibles }}, No disponibles: {{ productos_no_disponibles }}</p>
+
+    <ul>
+    {% for producto in productos %}
+        <li>
+            <strong>{{ producto.nombre }}</strong> - 
+            ${{ producto.precio }} - 
+            {% if producto.disponible %}
+                <span style="color: green;">Disponible</span>
+            {% else %}
+                <span style="color: red;">No disponible</span>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No hay productos registrados.</li>
+    {% endfor %}
+    </ul>
+    </div>
+
+{% include 'productos_caros.html' %}
+{% include 'productos_start_a.html' %}
+{% include 'productos_disponibles.html' %}
+
+{% endblock %}
+

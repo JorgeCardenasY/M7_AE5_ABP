@@ -1,0 +1,16 @@
+
+<div class="mt-4 mb-4 p-2 bg-dark text-white rounded">
+   <h1>Lista de Productos que comienzan con la letra 'a'({{ productos_start_a.count }})</h1>
+   <ul>
+     {% for producto in productos_start_a %}
+       <li>
+         <strong>{{ producto.nombre }}</strong> - 
+         ${{ producto.precio }}
+         {% if producto.disponible %}
+         {% endif %}
+       </li>
+     {% empty %}
+       <li>No hay productos que comiencen con la letra 'a'.</li>
+     {% endfor %}
+   </ul>
+</div>
